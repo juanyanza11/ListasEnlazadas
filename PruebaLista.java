@@ -5,12 +5,13 @@ public class PruebaLista {
     public static Nodo nu;
 
     public static void main(String[] args) {
-    // Modo aciclico de crear nodos de listas enlazadas
-        np = new Nodo(1);
-        // Al no estar enlazado con otro nodo el primero tambien es el ultimo
-        nu = np;
-/*       // Nuevo nodo 1
-        Nodo nn1 = new Nodo(2);
+        System.out.println("-----------------------------------------------");
+        //imprimirLista(np);
+        System.out.println("----------------LISTAS ENLAZADAS---------------");
+        //eliminarElementoFin(np, nu  );
+        System.out.println("-----------------------------------------------");
+
+/*       Nodo nn1 = new Nodo(2);
         nu.siguiente = nn1;
         nu = nn1;
 
@@ -23,7 +24,44 @@ public class PruebaLista {
         Nodo nn3 = new Nodo(4);
         nu.siguiente = nn3;
         nu = nn3;*/
-        Nodo aux;
+        boolean band = true;
+        while (band){
+            int op = Integer.parseInt(JOptionPane.showInputDialog("1. Ingresar nuevo nodo\n" +
+                    "2. Eliminar un nodo\n" +
+                    "3. Presentar lista enlazada\n" +
+                    "4. Salir"));
+            if (op == 1){
+                int dato = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor o dato"));
+                Nodo entrada = new Nodo(dato);
+                if (np == null) {
+                    np = entrada;
+                    nu = np;
+                    JOptionPane.showMessageDialog(null, "AGREGADO");
+                }else{
+                    nu = nu.siguiente = new Nodo(dato);
+                    JOptionPane.showMessageDialog(null, "AGREGADO");
+                }
+
+            }else{
+                if (op == 2){
+                    imprimirLista(np);
+                    eliminarElementos();
+                }else {
+                    if (op == 3){
+                        if (np == null){
+                            JOptionPane.showMessageDialog(null, "No hay nodos en la lista");
+                        }else{
+                            imprimirLista(np);
+                        }
+                        }else{
+                        if (op == 4){
+                            band = false;
+                        }
+                    }
+                    }
+                }
+            }
+        /*
         nu = nu.siguiente = new  Nodo(2);
         nu = nu.siguiente = new  Nodo(3);
         nu = nu.siguiente = new  Nodo(4);
@@ -31,7 +69,7 @@ public class PruebaLista {
         // UTILIZANDO SEGUNDO CONSTRUCTOR
         nu = nu.siguiente = new Nodo(6, nu.siguiente);
         nu = nu.siguiente = new Nodo(7, nu.siguiente);
-        nu = nu.siguiente = new Nodo(8, nu.siguiente);
+        nu = nu.siguiente = new Nodo(8, nu.siguiente);*/
 
 
         /*System.out.format("valor = %d\tNodo primero = %s\tNodo nn1 = %s\n", np.valor, np.siguiente, nn1);
@@ -44,11 +82,6 @@ public class PruebaLista {
         System.out.println("----------------LISTAS ENLAZADAS---------------");
         //eliminarElementoFin(np, nu  );
         System.out.println("-----------------------------------------------");
-        //imprimirLista(np);
-        //eliminarElementoFin2();
-        imprimirLista(np);
-        System.out.println("-----------------------------------------------");
-        eliminarElementos();
     }
     public static void imprimirLista(Nodo np){
         Nodo aux = np;
@@ -56,7 +89,7 @@ public class PruebaLista {
             System.out.format("\tvalor = %d\tsiguiente = %s\n", aux.valor, aux.siguiente);
             aux = aux.siguiente;
         }
-
+        System.out.println("-----------------------------------------------");
     }
 
     public static void eliminarElementoFin(Nodo np, Nodo nu){
@@ -100,7 +133,7 @@ public class PruebaLista {
                 p = p.siguiente;
             }
         }
-        // Tras encontrar el elemento se procede a enlazar sin tomar el nodo a eliminar
+                // Tras encontrar el elemento se procede a enlazar sin tomar el nodo a eliminar
         if (p != null){
 
             // Distingue entre el primer nodo o los demás nodos de la lista
